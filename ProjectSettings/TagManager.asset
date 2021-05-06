@@ -5,7 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - cell
-  - circle
+  - other_cell
+  - one_cell
   layers:
   - Default
   - TransparentFX
