@@ -11,6 +11,10 @@ public class Cell_Script : MonoBehaviour, IInteractable
 
     public bool getPoints = false;
     public bool setPoints = false;
+
+    public bool getPointsOther = false;
+    public bool setPointsOther = false;
+
     public int points;
 
     void Start()
@@ -34,6 +38,17 @@ public class Cell_Script : MonoBehaviour, IInteractable
             getPoints = false;
         }
 
+        if (setPointsOther == true)
+        {
+            points /= 2;
+            circle.SetActive(false);
+            setPointsOther = false;
+        }
+        else if (getPointsOther == true)
+        {
+            getPointsOther = false;
+        }
+
         if (points == 0)
         {
             center.GetComponent<Image>().color = Color.grey;
@@ -43,7 +58,7 @@ public class Cell_Script : MonoBehaviour, IInteractable
         pointsText.text = $"{points}";
     }
 
-    public void UpdateTag()
+    public void UpdateTagMy()
     {
         if (tag != "other_cell")
         {
@@ -56,6 +71,24 @@ public class Cell_Script : MonoBehaviour, IInteractable
             {
                 center.GetComponent<Image>().color = Color.cyan;
                 tag = "cell";
+                points = -points;
+            }
+        }
+    }
+
+    public void UpdateTagOther()
+    {
+        if (tag != "cell")
+        {
+            center.GetComponent<Image>().color = Color.red;
+            tag = "other_cell";
+        }
+        else
+        {
+            if (points < 0)
+            {
+                center.GetComponent<Image>().color = Color.red;
+                tag = "other_cell";
                 points = -points;
             }
         }

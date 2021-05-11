@@ -54,7 +54,7 @@ public class Cells_Manager : MonoBehaviour, IInteractable
                                     -= j.GetComponent<Cell_Script>().points;
                                 }
                             }
-                        i.GetComponent<Cell_Script>().UpdateTag();
+                        i.GetComponent<Cell_Script>().UpdateTagMy();
 
                         i.GetComponent<Cell_Script>().UpdatePoints();
                         break;
