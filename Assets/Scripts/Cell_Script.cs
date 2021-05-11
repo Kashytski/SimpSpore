@@ -9,19 +9,25 @@ public class Cell_Script : MonoBehaviour, IInteractable
     [SerializeField] Text pointsText;
     [SerializeField] GameObject center;
 
+    public int points;
+
     public bool getPoints = false;
     public bool setPoints = false;
 
     public bool getPointsOther = false;
     public bool setPointsOther = false;
 
-    public int points;
-
     void Start()
     {
         pointsText.text = $"{points}";
+
+        if (points == 0)
+        {
+            tag = "one_cell";
+            center.GetComponent<Image>().color = Color.grey;
+        }
+
         if (tag == "other_cell") center.GetComponent<Image>().color = Color.red;
-        if (tag == "one_cell") center.GetComponent<Image>().color = Color.grey;
         if (tag == "cell") center.GetComponent<Image>().color = Color.cyan;
     }
 
