@@ -12,6 +12,7 @@ public class OtherCells_Manager : MonoBehaviour, IInteractable
     GameObject[] OtherCells;
     GameObject[] OneCells;
 
+    public int speed;
     public List<GameObject> AllCells;
 
     int time = 0;
@@ -44,7 +45,7 @@ public class OtherCells_Manager : MonoBehaviour, IInteractable
             if (Cells.Length > 0 || OneCells.Length > 0)
             {
                 time++;
-                if (time / 120 == 4)
+                if (time / 120 == speed)
                 {
                     time = 0;
                     PointsTransfer();
