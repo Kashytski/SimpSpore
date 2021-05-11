@@ -41,14 +41,17 @@ public class OtherCells_Manager : MonoBehaviour, IInteractable
         OneCells = GameObject.FindGameObjectsWithTag("one_cell");
 
         if (menuPanel.activeInHierarchy == false)
-        {
-            if (Cells.Length > 0 || OneCells.Length > 0)
+       {
+            if (Cells.Length > 0)
             {
-                time++;
-                if (time / 120 == speed)
+                if (OtherCells.Length > 0)
                 {
-                    time = 0;
-                    PointsTransfer();
+                    time++;
+                    if (time / 120 == speed)
+                    {
+                        time = 0;
+                        PointsTransfer();
+                    }
                 }
             }
             else

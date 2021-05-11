@@ -40,7 +40,7 @@ public class Cells_Manager : MonoBehaviour, IInteractable
 
         if (menuPanel.activeInHierarchy == false)
         {
-            if (OtherCells.Length == 0 && OneCells.Length == 0)
+            if (OtherCells.Length == 0)
             {
                 menuPanel.SetActive(true);
                 winText.text = "Cyan Wins";
