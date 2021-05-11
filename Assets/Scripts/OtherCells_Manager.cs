@@ -22,7 +22,6 @@ public class OtherCells_Manager : MonoBehaviour, IInteractable
         OtherCells = GameObject.FindGameObjectsWithTag("other_cell");
         OneCells = GameObject.FindGameObjectsWithTag("one_cell");
 
-
         //Все клетки в одном листе
         for (int i = 0; i < Cells.Length; i++)
             AllCells.Add(Cells[i]);
@@ -36,6 +35,10 @@ public class OtherCells_Manager : MonoBehaviour, IInteractable
 
     void Update()
     {
+        Cells = GameObject.FindGameObjectsWithTag("cell");
+        OtherCells = GameObject.FindGameObjectsWithTag("other_cell");
+        OneCells = GameObject.FindGameObjectsWithTag("one_cell");
+
         if (menuPanel.activeInHierarchy == false)
         {
             if (Cells.Length > 0 || OneCells.Length > 0)
@@ -58,10 +61,6 @@ public class OtherCells_Manager : MonoBehaviour, IInteractable
 
     public void PointsTransfer()
     {
-        Cells = GameObject.FindGameObjectsWithTag("cell");
-        OtherCells = GameObject.FindGameObjectsWithTag("other_cell");
-        OneCells = GameObject.FindGameObjectsWithTag("one_cell");
-
         //Соперник выделяет клетки
         int RandomGet;
 
@@ -81,8 +80,6 @@ public class OtherCells_Manager : MonoBehaviour, IInteractable
         }
         while (AllCells[RandomGet].tag == "other_cell");
 
-
-        Debug.Log(AllCells[RandomGet]);
         //Проверка наличия выделенных клеток
         foreach (var j in AllCells)
 
@@ -105,9 +102,5 @@ public class OtherCells_Manager : MonoBehaviour, IInteractable
 
         AllCells[RandomGet].GetComponent<Cell_Script>().UpdateTagOther();
         AllCells[RandomGet].GetComponent<Cell_Script>().UpdatePoints();
-
-        Cells = GameObject.FindGameObjectsWithTag("cell");
-        OtherCells = GameObject.FindGameObjectsWithTag("other_cell");
-        OneCells = GameObject.FindGameObjectsWithTag("one_cell");
     }
 }

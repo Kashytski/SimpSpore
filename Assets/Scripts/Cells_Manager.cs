@@ -82,9 +82,5 @@ public class Cells_Manager : MonoBehaviour, IInteractable
                     }
                 break;
             }
-
-        Cells = GameObject.FindGameObjectsWithTag("cell");
-        OtherCells = GameObject.FindGameObjectsWithTag("other_cell");
-        OneCells = GameObject.FindGameObjectsWithTag("one_cell");
     }
 }
