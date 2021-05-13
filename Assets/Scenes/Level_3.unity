@@ -155,7 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuPanel: {fileID: 208373881}
   winText: {fileID: 1336072307}
-  speed: 8
+  speed: 2
   AllCells: []
 --- !u!114 &3483754
 MonoBehaviour:

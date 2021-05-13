@@ -17,6 +17,7 @@ public class Cells_Manager : MonoBehaviour, IInteractable
 
     void Start()
     {
+        //Сбор всех клеток в один Лист
         Cells = GameObject.FindGameObjectsWithTag("cell");
         OtherCells = GameObject.FindGameObjectsWithTag("other_cell");
         OneCells = GameObject.FindGameObjectsWithTag("one_cell");
@@ -34,6 +35,7 @@ public class Cells_Manager : MonoBehaviour, IInteractable
 
     void Update()
     {
+        //Проверка текущей принадлежности каждой клетки
         Cells = GameObject.FindGameObjectsWithTag("cell");
         OtherCells = GameObject.FindGameObjectsWithTag("other_cell");
         OneCells = GameObject.FindGameObjectsWithTag("one_cell");
@@ -51,6 +53,7 @@ public class Cells_Manager : MonoBehaviour, IInteractable
 
     public void PointsTransfer()
     {
+        //Передача частиц от КлетокСет КлеткеГет и снятие выделения
         foreach (var q in AllCells)
             if (q.GetComponent<Cell_Script>().setPoints == true)
             {
@@ -61,7 +64,7 @@ public class Cells_Manager : MonoBehaviour, IInteractable
 
                             if (j.GetComponent<Cell_Script>().setPoints == true)
                             {
-                                if (i.tag == "cell" || i.tag == "one_cell")
+                                if (i.tag == "one_cell")
                                 {
                                     j.GetComponent<Cell_Script>().UpdatePoints();
                                     i.GetComponent<Cell_Script>().points

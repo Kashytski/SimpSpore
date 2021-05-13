@@ -155,7 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuPanel: {fileID: 208373881}
   winText: {fileID: 1336072307}
-  speed: 8
+  speed: 2
   AllCells: []
 --- !u!114 &3483754
 MonoBehaviour:
@@ -317,7 +317,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &208373882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -924,7 +924,7 @@ RectTransform:
   m_GameObject: {fileID: 638617653}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 1}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 1}
   m_Children: []
   m_Father: {fileID: 1136142728}
   m_RootOrder: 0
@@ -1890,7 +1890,7 @@ RectTransform:
   m_GameObject: {fileID: 1176000884}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 1}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 1}
   m_Children: []
   m_Father: {fileID: 1136142728}
   m_RootOrder: 2
@@ -2133,7 +2133,7 @@ RectTransform:
   m_GameObject: {fileID: 1336072305}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 1}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 1}
   m_Children: []
   m_Father: {fileID: 1136142728}
   m_RootOrder: 3
@@ -2508,7 +2508,7 @@ RectTransform:
   m_GameObject: {fileID: 1607626993}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 1}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 1}
   m_Children: []
   m_Father: {fileID: 1136142728}
   m_RootOrder: 1

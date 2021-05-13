@@ -19,7 +19,7 @@ public class Cell_Incr : MonoBehaviour
             if (center.GetComponent<Image>().color != Color.grey)
             {
                 time++;
-                if (time / 120 == 2)
+                if (time / 60 == 1)
                 {
                     time = 0;
                     points.text = $"{int.Parse(points.text) + 1}";

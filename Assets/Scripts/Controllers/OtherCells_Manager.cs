@@ -42,24 +42,23 @@ public class OtherCells_Manager : MonoBehaviour, IInteractable
 
         if (menuPanel.activeInHierarchy == false)
        {
-            if (Cells.Length > 0)
-            {
-                if (OtherCells.Length > 0)
+            if (OtherCells.Length > 0)
+                if (Cells.Length > 0)
                 {
                     time++;
-                    if (time / 120 == speed)
+                    if (time / 60 == speed)
                     {
                         time = 0;
                         PointsTransfer();
                     }
                 }
-            }
-            else
-            {
-                menuPanel.SetActive(true);
-                winText.text = "Red Wins";
-                winText.color = Color.red;
-            }
+                else
+                {
+                    menuPanel.SetActive(true);
+                    winText.text = "Red Wins";
+                    winText.color = Color.red;
+                }
+
         }
     }
 
@@ -89,7 +88,7 @@ public class OtherCells_Manager : MonoBehaviour, IInteractable
 
             if (j.GetComponent<Cell_Script>().setPointsOther == true)
             {
-                if (AllCells[RandomGet].tag == "other_cell" || AllCells[RandomGet].tag == "one_cell")
+                if (AllCells[RandomGet].tag == "one_cell")
                 {
                     j.GetComponent<Cell_Script>().UpdatePoints();
                     AllCells[RandomGet].GetComponent<Cell_Script>().points
