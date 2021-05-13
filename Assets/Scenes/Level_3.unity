@@ -155,7 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuPanel: {fileID: 208373881}
   winText: {fileID: 1336072307}
-  speed: 2
+  speed: 4
   AllCells: []
 --- !u!114 &3483754
 MonoBehaviour:
@@ -1833,6 +1833,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 988238250}
     m_Modifications:
+    - target: {fileID: 7206832615754238128, guid: d5c926b9aeef08d45a39be319f8c5f0e, type: 3}
+      propertyPath: bound
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 7206832615754238128, guid: d5c926b9aeef08d45a39be319f8c5f0e, type: 3}
       propertyPath: menuPanel
       value: 

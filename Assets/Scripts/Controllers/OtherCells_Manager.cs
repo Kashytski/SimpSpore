@@ -74,10 +74,8 @@ public class OtherCells_Manager : MonoBehaviour, IInteractable
         }
 
         //—оперник выбирает клетку дл€ получени€ частиц
-        RandomGet = 0;
         do
         {
-            AllCells[RandomGet].GetComponent<Cell_Script>().getPointsOther = false;
             RandomGet = Random.Range(0, AllCells.Count);
             AllCells[RandomGet].GetComponent<Cell_Script>().getPointsOther = true;
         }

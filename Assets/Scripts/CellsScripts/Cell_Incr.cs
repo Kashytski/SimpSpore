@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class Cell_Incr : MonoBehaviour
 {
-    [SerializeField]Text points;
-    [SerializeField]GameObject center;
+    [SerializeField] Text points;
+    [SerializeField] GameObject center;
     [SerializeField] GameObject menuPanel;
 
     public int bound;
