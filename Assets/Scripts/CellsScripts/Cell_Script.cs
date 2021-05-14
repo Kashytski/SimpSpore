@@ -102,10 +102,7 @@ public class Cell_Script : MonoBehaviour, IInteractable
 
     public void PointsTransfer()
     {
-        if (setPoints == false)
-            circle.SetActive(true);
-        else
-            circle.SetActive(false);
-        setPoints = !setPoints;
+        circle.SetActive(true);
+        setPoints = true;
     }
 }

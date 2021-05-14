@@ -15,32 +15,43 @@ public class Raycast : MonoBehaviour
     {
         cam = GetComponent<Camera>();
         ray = cam.ScreenPointToRay(Input.mousePosition);
-        
+
         Touch myTouch;
 
         //Выделение только тех клеток, которые принадлежат игроку
-        try
+        if (menuPanel.activeInHierarchy == false)
         {
-            myTouch = Input.GetTouch(0);
-            if (myTouch.phase == TouchPhase.Began)
+            //Пульсирование клетки
+            if (Physics.Raycast(ray, out hit) &&
+                (hit.collider.gameObject.tag == "one_cell" || hit.collider.gameObject.tag == "other_cell"))
             {
-                if (Physics.Raycast(ray, out hit))
-                {
-                    if (hit.collider.gameObject.tag == "cell")
+
+            }
+
+                try
+            {
+                myTouch = Input.GetTouch(0);
+
+                if (myTouch.phase == TouchPhase.Moved)
+                    if (Physics.Raycast(ray, out hit)
+                        && hit.collider.gameObject.tag == "cell")
                     {
                         var interactComponent = hit.collider.GetComponent<IInteractable>();
                         interactComponent.PointsTransfer();
                     }
-                    else
+
+                if (myTouch.phase == TouchPhase.Ended)
+                    if (Physics.Raycast(ray, out hit) &&
+                        (hit.collider.gameObject.tag == "one_cell" || hit.collider.gameObject.tag == "other_cell"))
                     {
                         hit.collider.GetComponent<Cell_Script>().getPoints = true;
                         var interactComponent = cellController.GetComponent<IInteractable>();
                         interactComponent.PointsTransfer();
                     }
-                }
             }
+            catch { }
         }
-        catch { }
+           
 
         //Видимость панели меню
         if (Input.GetKeyDown(KeyCode.Escape))
