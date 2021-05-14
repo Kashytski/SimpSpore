@@ -16,29 +16,15 @@ public class Raycast : MonoBehaviour
     {
         cam = GetComponent<Camera>();
         ray = cam.ScreenPointToRay(Input.mousePosition);
-
         Touch myTouch;
-
-        //Выделение только тех клеток, которые принадлежат игроку
+        
         if (menuPanel.activeInHierarchy == false)
-        {
-            //Реакция one_cell на touch
-            if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.tag == "one_cell")
-            {
-                anim = hit.collider.gameObject.GetComponent<Animator>();
-                if (anim.enabled == false)
-                {
-                    anim.enabled = true;
-                    //Остановка пульсирования через Coroutine
-                    StartCoroutine(CellScale());
-                }
-            }
-
+        {        
             try
             {
                 myTouch = Input.GetTouch(0);
 
-                //Выделение
+                //Выделение только тех клеток, которые принадлежат игроку
                 if (myTouch.phase == TouchPhase.Moved)
                     if (Physics.Raycast(ray, out hit)
                         && hit.collider.gameObject.tag == "cell")
@@ -58,9 +44,21 @@ public class Raycast : MonoBehaviour
                     }
             }
             catch { }
+
+            //Реакция one_cell на touch
+            if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.tag == "one_cell")
+            {
+                anim = hit.collider.gameObject.GetComponent<Animator>();
+                if (anim.enabled == false)
+                {
+                    anim.enabled = true;
+                    //Остановка пульсирования через Coroutine
+                    StartCoroutine(CellScale());
+                }
+            }
         }
            
-
+        
         //Видимость панели меню
         if (Input.GetKeyDown(KeyCode.Escape))
             menuPanel.SetActive(!menuPanel.activeInHierarchy);
