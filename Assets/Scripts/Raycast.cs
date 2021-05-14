@@ -7,6 +7,7 @@ public class Raycast : MonoBehaviour
 {
     [SerializeField] GameObject menuPanel;
     [SerializeField] GameObject cellController;
+    Animator anim;
     Camera cam;
     Ray ray;
     RaycastHit hit;
@@ -21,6 +22,17 @@ public class Raycast : MonoBehaviour
         //Выделение только тех клеток, которые принадлежат игроку
         if (menuPanel.activeInHierarchy == false)
         {
+            //Пульсация клетки-получателя
+            if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.tag == "one_cell")
+            {
+                anim = hit.collider.gameObject.GetComponent<Animator>();
+                if (anim.enabled == false)
+                {
+                    anim.enabled = true;
+                    StartCoroutine(CellScale());
+                }
+            }
+
             try
             {
                 myTouch = Input.GetTouch(0);
@@ -51,5 +63,12 @@ public class Raycast : MonoBehaviour
         {
             menuPanel.SetActive(!menuPanel.activeInHierarchy);
         }
+    }
+
+    IEnumerator CellScale()
+    {
+        Animator anim1 = anim;
+        yield return new WaitForSeconds(0.51f);
+        anim1.enabled = false;
     }
 }

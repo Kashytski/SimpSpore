@@ -105,4 +105,9 @@ public class Cell_Script : MonoBehaviour, IInteractable
         circle.SetActive(true);
         setPoints = true;
     }
+
+    void Stop()
+    {
+
+    }
 }

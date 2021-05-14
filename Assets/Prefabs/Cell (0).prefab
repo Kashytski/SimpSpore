@@ -183,9 +183,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7206832615754238132}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.1, y: 3.58, z: 0.4041152}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.5}
   m_Children:
   - {fileID: 7206832615735952381}
   - {fileID: 7206832616630876080}
@@ -207,7 +207,7 @@ MonoBehaviour:
   circle: {fileID: 7206832615735952380}
   pointsText: {fileID: 7206832616268969944}
   center: {fileID: 7206832615672541097}
-  points: 40
+  points: 60
   getPoints: 0
   setPoints: 0
   getPointsOther: 0
@@ -227,7 +227,7 @@ MonoBehaviour:
   points: {fileID: 7206832616268969944}
   center: {fileID: 7206832615672541097}
   menuPanel: {fileID: 0}
-  bound: 40
+  bound: 60
 --- !u!136 &7206832615754238131
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -239,7 +239,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 2.5
-  m_Height: 0.1
+  m_Height: 0.01
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7206832615990400919
@@ -395,7 +395,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 40
+  m_Text: 60
 --- !u!1 &7206832616630876083
 GameObject:
   m_ObjectHideFlags: 0
