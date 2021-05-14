@@ -12,7 +12,7 @@ public class OtherCells_Manager : MonoBehaviour, IInteractable
     GameObject[] OtherCells;
     GameObject[] OneCells;
 
-    public int speed;
+    public int interval;
     public List<GameObject> AllCells;
 
     int time = 0;
@@ -40,13 +40,14 @@ public class OtherCells_Manager : MonoBehaviour, IInteractable
         OtherCells = GameObject.FindGameObjectsWithTag("other_cell");
         OneCells = GameObject.FindGameObjectsWithTag("one_cell");
 
+        //Чем больше interval, тем реже ходит соперник
         if (menuPanel.activeInHierarchy == false)
        {
             if (OtherCells.Length > 0)
                 if (Cells.Length > 0)
                 {
                     time++;
-                    if (time / 60 == speed)
+                    if (time / 60 == interval)
                     {
                         time = 0;
                         PointsTransfer();
@@ -73,7 +74,7 @@ public class OtherCells_Manager : MonoBehaviour, IInteractable
             OtherCells[RandomGet].GetComponent<Cell_Script>().setPointsOther = true;
         }
 
-        //Соперник выбирает клетку для получения частиц
+        //Соперник выбирает клетку для получения частиц из всех, кроме своих
         do
         {
             RandomGet = Random.Range(0, AllCells.Count);
@@ -83,7 +84,6 @@ public class OtherCells_Manager : MonoBehaviour, IInteractable
 
         //Проверка наличия выделенных клеток
         foreach (var j in AllCells)
-
             if (j.GetComponent<Cell_Script>().setPointsOther == true)
             {
                 if (AllCells[RandomGet].tag == "one_cell")

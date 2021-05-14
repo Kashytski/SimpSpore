@@ -22,13 +22,14 @@ public class Raycast : MonoBehaviour
         //Выделение только тех клеток, которые принадлежат игроку
         if (menuPanel.activeInHierarchy == false)
         {
-            //Пульсация клетки-получателя
+            //Реакция one_cell на touch
             if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.tag == "one_cell")
             {
                 anim = hit.collider.gameObject.GetComponent<Animator>();
                 if (anim.enabled == false)
                 {
                     anim.enabled = true;
+                    //Остановка пульсирования через Coroutine
                     StartCoroutine(CellScale());
                 }
             }
@@ -37,6 +38,7 @@ public class Raycast : MonoBehaviour
             {
                 myTouch = Input.GetTouch(0);
 
+                //Выделение
                 if (myTouch.phase == TouchPhase.Moved)
                     if (Physics.Raycast(ray, out hit)
                         && hit.collider.gameObject.tag == "cell")
@@ -45,6 +47,7 @@ public class Raycast : MonoBehaviour
                         interactComponent.PointsTransfer();
                     }
 
+                //Выбор клетки-получателя и запуск передачи points
                 if (myTouch.phase == TouchPhase.Ended)
                     if (Physics.Raycast(ray, out hit) &&
                         (hit.collider.gameObject.tag == "one_cell" || hit.collider.gameObject.tag == "other_cell"))
@@ -60,9 +63,7 @@ public class Raycast : MonoBehaviour
 
         //Видимость панели меню
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
             menuPanel.SetActive(!menuPanel.activeInHierarchy);
-        }
     }
 
     IEnumerator CellScale()

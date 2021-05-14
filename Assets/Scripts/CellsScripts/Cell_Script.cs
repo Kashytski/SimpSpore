@@ -19,6 +19,7 @@ public class Cell_Script : MonoBehaviour, IInteractable
 
     void Start()
     {
+        //Первичная покраска и получение points
         pointsText.text = $"{points}";
 
         if (points == 0)
@@ -33,6 +34,7 @@ public class Cell_Script : MonoBehaviour, IInteractable
 
     public void UpdatePoints()
     {
+        //Потеря points соотв клетками, перекраска, если нужно
         if (setPoints == true)
         {
             points /= 2;
@@ -64,6 +66,7 @@ public class Cell_Script : MonoBehaviour, IInteractable
         pointsText.text = $"{points}";
     }
 
+    //Смена тэга и перекраска клетки-получателя, если нужно
     public void UpdateTagMy()
     {
         if (tag != "other_cell")
@@ -82,6 +85,7 @@ public class Cell_Script : MonoBehaviour, IInteractable
         }
     }
 
+    //Смена тэга и перекраска клетки-получателя, если нужно
     public void UpdateTagOther()
     {
         if (tag != "cell")
@@ -100,14 +104,10 @@ public class Cell_Script : MonoBehaviour, IInteractable
         }
     }
 
+    //Выделение
     public void PointsTransfer()
     {
         circle.SetActive(true);
         setPoints = true;
-    }
-
-    void Stop()
-    {
-
     }
 }

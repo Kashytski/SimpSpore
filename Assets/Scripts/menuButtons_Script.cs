@@ -12,6 +12,7 @@ public class menuButtons_Script : MonoBehaviour
 
     public void BackGame()
     {
+        //Условие перехода на след уровень
         if (winText.text == "Cyan Wins")
         {
             switch (SceneManager.GetActiveScene().name)
