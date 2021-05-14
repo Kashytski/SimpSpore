@@ -57,7 +57,6 @@ public class Raycast : MonoBehaviour
                 }
             }
         }
-           
         
         //Видимость панели меню
         if (Input.GetKeyDown(KeyCode.Escape))
