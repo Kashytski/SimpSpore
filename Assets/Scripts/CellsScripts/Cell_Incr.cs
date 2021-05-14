@@ -18,6 +18,7 @@ public class Cell_Incr : MonoBehaviour
         {
             if (center.GetComponent<Image>().color != Color.grey)
             {
+                //Раз в 60 кадров число points в клетке растёт
                 time++;
                 if (time / 60 == 1)
                 {
