@@ -21,14 +21,7 @@ public class Raycast : MonoBehaviour
         //Выделение только тех клеток, которые принадлежат игроку
         if (menuPanel.activeInHierarchy == false)
         {
-            //Пульсирование клетки
-            if (Physics.Raycast(ray, out hit) &&
-                (hit.collider.gameObject.tag == "one_cell" || hit.collider.gameObject.tag == "other_cell"))
-            {
-
-            }
-
-                try
+            try
             {
                 myTouch = Input.GetTouch(0);
 
