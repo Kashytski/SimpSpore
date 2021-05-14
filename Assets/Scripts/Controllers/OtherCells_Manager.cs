@@ -19,11 +19,11 @@ public class OtherCells_Manager : MonoBehaviour, IInteractable
 
     void Start()
     {
+        //Сбор всех клеток в один список
         Cells = GameObject.FindGameObjectsWithTag("cell");
         OtherCells = GameObject.FindGameObjectsWithTag("other_cell");
         OneCells = GameObject.FindGameObjectsWithTag("one_cell");
 
-        //Все клетки в одном листе
         for (int i = 0; i < Cells.Length; i++)
             AllCells.Add(Cells[i]);
 
@@ -36,6 +36,7 @@ public class OtherCells_Manager : MonoBehaviour, IInteractable
 
     void Update()
     {
+        //Проверка текущей принадлежности каждой клетки
         Cells = GameObject.FindGameObjectsWithTag("cell");
         OtherCells = GameObject.FindGameObjectsWithTag("other_cell");
         OneCells = GameObject.FindGameObjectsWithTag("one_cell");
@@ -82,7 +83,7 @@ public class OtherCells_Manager : MonoBehaviour, IInteractable
         }
         while (AllCells[RandomGet].tag == "other_cell");
 
-        //Проверка наличия выделенных клеток
+        //Проверка наличия выделенных клеток и их перебор
         foreach (var j in AllCells)
             if (j.GetComponent<Cell_Script>().setPointsOther == true)
             {

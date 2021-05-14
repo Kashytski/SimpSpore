@@ -104,7 +104,7 @@ public class Cell_Script : MonoBehaviour, IInteractable
         }
     }
 
-    //Выделение
+    //Визуальное выделение
     public void PointsTransfer()
     {
         circle.SetActive(true);

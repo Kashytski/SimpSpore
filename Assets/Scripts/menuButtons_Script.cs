@@ -29,7 +29,7 @@ public class menuButtons_Script : MonoBehaviour
             }
         }
         else
-            menuPanel.SetActive(!menuPanel.activeInHierarchy);
+            StartCoroutine(HideMenu());
     }
 
     public void RestartGame()
@@ -41,5 +41,12 @@ public class menuButtons_Script : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    IEnumerator HideMenu()
+    {
+        //ћеню пр€четс€ с задержкой
+        yield return new WaitForSeconds(0.2f);
+        menuPanel.SetActive(!menuPanel.activeInHierarchy);
     }
 }
