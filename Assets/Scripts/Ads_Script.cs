@@ -18,14 +18,7 @@ public class Ads_Script : MonoBehaviour
     {
         if (winText.text != "")
             if (Advertisement.IsReady())
-            {
                 Advertisement.Show();
-                Invoke("StopAds",5f);
-            }
-    }
-
-    void StopAds()
-    {
-        winText.text = "Don't stop, keep move";
+        winText.text = "";
     }
 }
