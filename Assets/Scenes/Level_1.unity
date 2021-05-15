@@ -1133,7 +1133,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 638617658}
-        m_TargetAssemblyTypeName: menuButtons_Script, Assembly-CSharp
+        m_TargetAssemblyTypeName: MenuButtons_Script, Assembly-CSharp
         m_MethodName: BackGame
         m_Mode: 1
         m_Arguments:
@@ -2040,10 +2040,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
+    m_FontSize: 35
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 4
+    m_MinSize: 3
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
