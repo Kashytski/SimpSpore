@@ -65,7 +65,7 @@ public class Cells_Manager : MonoBehaviour, IInteractable
                         foreach (var j in AllCells)
                             if (j.GetComponent<Cell_Script>().setPoints == true)
                             {
-                                if (i.tag == "one_cell")
+                                if (i.tag == "one_cell" || i.tag == "cell")
                                 {
                                     j.GetComponent<Cell_Script>().UpdatePoints();
                                     i.GetComponent<Cell_Script>().points

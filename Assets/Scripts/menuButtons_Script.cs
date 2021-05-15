@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using System;
 
-public class menuButtons_Script : MonoBehaviour
+public class MenuButtons_Script : MonoBehaviour
 {
     [SerializeField] GameObject menuPanel;
     [SerializeField] Text winText;
