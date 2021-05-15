@@ -12,24 +12,36 @@ public class MenuButtons_Script : MonoBehaviour
 
     public void BackGame()
     {
-        //Условие перехода на след уровень
-        if (winText.text == "Cyan Wins")
+        //Условия Победы/Поражения/Остального
+        switch (winText.text)
         {
-            switch (SceneManager.GetActiveScene().name)
-            {
-                case "Level_1":
-                    SceneManager.LoadScene("Level_2");
-                    break;
-                case "Level_2":
-                    SceneManager.LoadScene("Level_3");
-                    break;
-                case "Level_3":
-                    SceneManager.LoadScene("Level_1");
-                    break;
-            }
+            case "Cyan Wins":
+
+                //Условие перехода на след уровень
+                switch (SceneManager.GetActiveScene().name)
+                {
+                    case "Level_1":
+                        SceneManager.LoadScene("Level_2");
+                        break;
+
+                    case "Level_2":
+                        SceneManager.LoadScene("Level_3");
+                        break;
+
+                    case "Level_3":
+                        SceneManager.LoadScene("Level_1");
+                        break;
+                }
+                break;
+
+            case "Red Wins":
+                RestartGame();
+                break;
+
+            case "":
+                StartCoroutine(HideMenu());
+                break;
         }
-        else
-            StartCoroutine(HideMenu());
     }
 
     public void RestartGame()
@@ -46,7 +58,7 @@ public class MenuButtons_Script : MonoBehaviour
     IEnumerator HideMenu()
     {
         //Меню прячется с задержкой
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.25f);
         menuPanel.SetActive(!menuPanel.activeInHierarchy);
     }
 }
