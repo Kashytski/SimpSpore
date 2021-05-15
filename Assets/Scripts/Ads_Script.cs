@@ -7,7 +7,7 @@ using UnityEngine.Advertisements;
 public class Ads_Script : MonoBehaviour
 {
     [SerializeField] Text winText;
-    int i = 0;
+
 
     void Start()
     {
@@ -16,11 +16,16 @@ public class Ads_Script : MonoBehaviour
     }
     void Update()
     {
-        if (winText.text != "" && i == 1)
+        if (winText.text != "")
             if (Advertisement.IsReady())
             {
                 Advertisement.Show();
-                i = 0;
+                Invoke("StopAds",5f);
             }
+    }
+
+    void StopAds()
+    {
+        winText.text = "Don't stop, keep move";
     }
 }
