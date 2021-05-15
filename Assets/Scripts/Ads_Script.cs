@@ -12,7 +12,7 @@ public class Ads_Script : MonoBehaviour
     void Start()
     {
         if (Advertisement.isSupported)
-            Advertisement.Initialize("4130595",false);
+            Advertisement.Initialize("4130595",true);
     }
     void Update()
     {
