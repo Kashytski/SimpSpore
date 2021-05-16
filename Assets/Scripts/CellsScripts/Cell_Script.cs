@@ -35,6 +35,7 @@ public class Cell_Script : MonoBehaviour, IInteractable
     public void UpdatePoints()
     {
         //Потеря points соотв клетками, перекраска, если нужно
+        //Для своих клеток
         if (setPoints == true)
         {
             points /= 2;
@@ -46,10 +47,10 @@ public class Cell_Script : MonoBehaviour, IInteractable
             getPoints = false;
         }
 
+        //Для чужих клеток
         if (setPointsOther == true)
         {
             points /= 2;
-            circle.SetActive(false);
             setPointsOther = false;
         }
         else if (getPointsOther == true)

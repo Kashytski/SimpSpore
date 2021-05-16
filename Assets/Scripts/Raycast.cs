@@ -35,8 +35,7 @@ public class Raycast : MonoBehaviour
 
                 //¬ыбор клетки-получател€ и запуск передачи points
                 if (myTouch.phase == TouchPhase.Ended)
-                    if (Physics.Raycast(ray, out hit)/* &&
-                        (hit.collider.gameObject.tag == "one_cell" || hit.collider.gameObject.tag == "other_cell")*/)
+                    if (Physics.Raycast(ray, out hit))
                     {
                         hit.collider.GetComponent<Cell_Script>().getPoints = true;
                         var interactComponent = cellController.GetComponent<IInteractable>();

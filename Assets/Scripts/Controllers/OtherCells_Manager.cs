@@ -76,8 +76,10 @@ public class OtherCells_Manager : MonoBehaviour, IInteractable
         }
 
         //Соперник выбирает клетку для получения частиц из всех, кроме своих
+        RandomGet = 0;
         do
         {
+            AllCells[RandomGet].GetComponent<Cell_Script>().getPointsOther = false;
             RandomGet = Random.Range(0, AllCells.Count);
             AllCells[RandomGet].GetComponent<Cell_Script>().getPointsOther = true;
         }
