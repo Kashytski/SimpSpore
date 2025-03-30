@@ -5,12 +5,18 @@ using UnityEngine;
 public class SoundScript : MonoBehaviour
 {
     [SerializeField] GameObject menuPanel;
+    public static SoundScript Instance;
 
-    void Update()
+    void Awake()
     {
-        if (menuPanel.activeInHierarchy == true)
-            GetComponent<AudioSource>().Pause();
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
         else
-            GetComponent<AudioSource>().UnPause();
-    } 
+        {
+            Destroy(gameObject);
+        }
+    }
 }

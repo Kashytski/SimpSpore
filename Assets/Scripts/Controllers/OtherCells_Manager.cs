@@ -1,54 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class OtherCells_Manager : MonoBehaviour, IInteractable
 {
-    [SerializeField] GameObject menuPanel;
-    [SerializeField] Text winText;
+    [SerializeField] int interval;
+    private MenuButtons menuPanel => Cell_Controller.Instance.MenuPanel;
+    private Cell_Script[] otherCellsObj => Cell_Controller.Instance.otherCells;
+    private Cell_Script[] cellsObj => Cell_Controller.Instance.cells;
+    private Cell_Script[] allCellsObj => Cell_Controller.Instance.allCells;
 
-    GameObject[] Cells;
-    GameObject[] OtherCells;
-    GameObject[] OneCells;
-
-    public int interval;
-    public List<GameObject> AllCells;
-
-    int time = 0;
-
-    void Start()
-    {
-        //Сбор всех клеток в один список
-        Cells = GameObject.FindGameObjectsWithTag("cell");
-        OtherCells = GameObject.FindGameObjectsWithTag("other_cell");
-        OneCells = GameObject.FindGameObjectsWithTag("one_cell");
-
-        for (int i = 0; i < Cells.Length; i++)
-            AllCells.Add(Cells[i]);
-
-        for (int i = 0; i < OtherCells.Length; i++)
-            AllCells.Add(OtherCells[i]);
-
-        for (int i = 0; i < OneCells.Length; i++)
-            AllCells.Add(OneCells[i]);
-    }
+    float time = 0;
 
     void Update()
     {
-        //Проверка текущей принадлежности каждой клетки
-        Cells = GameObject.FindGameObjectsWithTag("cell");
-        OtherCells = GameObject.FindGameObjectsWithTag("other_cell");
-        OneCells = GameObject.FindGameObjectsWithTag("one_cell");
+        //Debug.LogWarning(otherCellsObj.Length);
+        //Debug.LogWarning(cellsObj.Length);
 
-        //Чем больше interval, тем реже ходит соперник
-        if (menuPanel.activeInHierarchy == false)
-       {
-            if (OtherCells.Length > 0)
-                if (Cells.Length > 0)
+        if (!menuPanel.gameObject.activeInHierarchy)
+        {
+            if (otherCellsObj.Length > 0)
+                if (cellsObj.Length > 0)
                 {
-                    time++;
-                    if (time / 60 == interval)
+                    time += Time.deltaTime;
+                    if (time > interval)
                     {
                         time = 0;
                         PointsTransfer();
@@ -56,55 +29,49 @@ public class OtherCells_Manager : MonoBehaviour, IInteractable
                 }
                 else
                 {
-                    menuPanel.SetActive(true);
-                    winText.text = "Red Wins";
-                    winText.color = Color.red;
+                    menuPanel.gameObject.SetActive(true);
+                    menuPanel.RedWins();
                 }
-
         }
     }
 
     public void PointsTransfer()
     {
-        //Соперник выделяет клетки
         int RandomGet;
 
         for (int i = 0; i < 3; i++)
         {
-            RandomGet = Random.Range(0, OtherCells.Length);
-            OtherCells[RandomGet].GetComponent<Cell_Script>().setPointsOther = true;
+            RandomGet = Random.Range(0, otherCellsObj.Length);
+            otherCellsObj[RandomGet].setPointsOther = true;
         }
 
-        //Соперник выбирает клетку для получения частиц из всех, кроме своих
         RandomGet = 0;
         do
         {
-            AllCells[RandomGet].GetComponent<Cell_Script>().getPointsOther = false;
-            RandomGet = Random.Range(0, AllCells.Count);
-            AllCells[RandomGet].GetComponent<Cell_Script>().getPointsOther = true;
+            allCellsObj[RandomGet].getPointsOther = false;
+            RandomGet = Random.Range(0, allCellsObj.Length);
+            allCellsObj[RandomGet].getPointsOther = true;
         }
-        while (AllCells[RandomGet].tag == "other_cell");
+        while (allCellsObj[RandomGet].CompareTag("other_cell"));
 
-        //Проверка наличия выделенных клеток и их перебор
-        foreach (var j in AllCells)
-            if (j.GetComponent<Cell_Script>().setPointsOther == true)
+        foreach (var j in allCellsObj)
+            if (j.setPointsOther)
             {
-                if (AllCells[RandomGet].tag == "one_cell")
-                {
-                    j.GetComponent<Cell_Script>().UpdatePoints();
-                    AllCells[RandomGet].GetComponent<Cell_Script>().points
-                    += j.GetComponent<Cell_Script>().points;
-                }
+                j.UpdatePoints();
 
-                if (AllCells[RandomGet].tag == "cell")
+                switch (allCellsObj[RandomGet].tag)
                 {
-                    j.GetComponent<Cell_Script>().UpdatePoints();
-                    AllCells[RandomGet].GetComponent<Cell_Script>().points
-                    -= j.GetComponent<Cell_Script>().points;
+                    case "one_cell":
+                        allCellsObj[RandomGet].points += j.points;
+                        break;
+
+                    case "cell":
+                        allCellsObj[RandomGet].points -= j.points;
+                        break;
                 }
             }
 
-        AllCells[RandomGet].GetComponent<Cell_Script>().UpdateTagOther();
-        AllCells[RandomGet].GetComponent<Cell_Script>().UpdatePoints();
+        allCellsObj[RandomGet].UpdateTagOther();
+        allCellsObj[RandomGet].UpdatePoints();
     }
 }

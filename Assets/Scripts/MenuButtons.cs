@@ -5,19 +5,17 @@ using UnityEngine.UI;
 using UnityEngine;
 using System;
 
-public class MenuButtons_Script : MonoBehaviour
+public class MenuButtons : MonoBehaviour
 {
     [SerializeField] GameObject menuPanel;
     [SerializeField] Text winText;
 
-    public void BackGame()
+    public void BackInGame()
     {
-        //Условия Победы/Поражения/Остального
         switch (winText.text)
         {
             case "Cyan Wins":
 
-                //Условие перехода на след уровень
                 switch (SceneManager.GetActiveScene().name)
                 {
                     case "Level_1":
@@ -29,6 +27,10 @@ public class MenuButtons_Script : MonoBehaviour
                         break;
 
                     case "Level_3":
+                        SceneManager.LoadScene("Level_4");
+                        break;
+
+                    case "Level_4":
                         SceneManager.LoadScene("Level_1");
                         break;
                 }
@@ -57,8 +59,19 @@ public class MenuButtons_Script : MonoBehaviour
 
     IEnumerator HideMenu()
     {
-        //Меню прячется с задержкой
         yield return new WaitForSeconds(0.25f);
         menuPanel.SetActive(!menuPanel.activeInHierarchy);
+    }
+
+    public void RedWins()
+    {
+        winText.text = "Red Wins";
+        winText.color = Color.red;
+    }
+
+    public void CyanWins()
+    {
+        winText.text = "Cyan Wins";
+        winText.color = Color.cyan;
     }
 }

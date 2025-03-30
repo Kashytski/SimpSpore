@@ -206,7 +206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circle: {fileID: 7206832615735952380}
   pointsText: {fileID: 7206832616268969944}
-  center: {fileID: 7206832615672541097}
+  center: {fileID: 7206832615672541095}
   points: 60
   getPoints: 0
   setPoints: 0
@@ -225,8 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: {fileID: 7206832616268969944}
-  center: {fileID: 7206832615672541097}
-  menuPanel: {fileID: 0}
+  center: {fileID: 7206832615672541095}
   bound: 60
 --- !u!136 &7206832615754238131
 CapsuleCollider:

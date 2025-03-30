@@ -5,67 +5,87 @@ using UnityEngine.UI;
 
 public class Raycast : MonoBehaviour
 {
-    [SerializeField] GameObject menuPanel;
-    [SerializeField] GameObject cellController;
-    Animator anim;
-    Camera cam;
-    Ray ray;
-    RaycastHit hit;
+    private GameObject cellManager;
+    private GameObject menuPanel => Cell_Controller.Instance.MenuPanel.gameObject;
+    private Animator anim;
+    private Camera cam;
+    private Ray ray;
+    private RaycastHit hit;
 
     void Update()
     {
+        cellManager = gameObject;
         cam = GetComponent<Camera>();
         ray = cam.ScreenPointToRay(Input.mousePosition);
-        Touch myTouch;
-        
-        if (menuPanel.activeInHierarchy == false)
-        {        
-            try
+
+        if (!menuPanel.activeInHierarchy)
+        {
+            if (Input.touchCount > 0)
             {
-                myTouch = Input.GetTouch(0);
+                Touch myTouch = Input.GetTouch(0);
 
-                //Выделение только тех клеток, которые принадлежат игроку
                 if (myTouch.phase == TouchPhase.Moved)
-                    if (Physics.Raycast(ray, out hit)
-                        && hit.collider.gameObject.tag == "cell")
+                {
+                    if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.CompareTag("cell"))
                     {
-                        var interactComponent = hit.collider.GetComponent<IInteractable>();
-                        interactComponent.PointsTransfer();
+                        IInteractable cell = hit.collider.GetComponent<IInteractable>();
+                        cell.PointsTransfer();
                     }
+                }
 
-                //Выбор клетки-получателя и запуск передачи points
                 if (myTouch.phase == TouchPhase.Ended)
+                {
                     if (Physics.Raycast(ray, out hit))
                     {
                         hit.collider.GetComponent<Cell_Script>().getPoints = true;
-                        var interactComponent = cellController.GetComponent<IInteractable>();
-                        interactComponent.PointsTransfer();
+                        IInteractable cell = cellManager.GetComponent<IInteractable>();
+                        cell.PointsTransfer();
                     }
+                }
             }
-            catch { }
+            else
+            {
+                if (Input.GetMouseButton(0))
+                {
+                    if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.CompareTag("cell"))
+                    {
+                        IInteractable cell = hit.collider.GetComponent<IInteractable>();
+                        cell.PointsTransfer();
+                    }
+                }
 
-            //Реакция one_cell на touch
-            if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.tag == "one_cell")
+                if (Input.GetMouseButtonUp(0))
+                {
+                    if (Physics.Raycast(ray, out hit))
+                    {
+                        hit.collider.GetComponent<Cell_Script>().getPoints = true;
+                        IInteractable cell = cellManager.GetComponent<IInteractable>();
+                        cell.PointsTransfer();
+                    }
+                }
+            }
+
+            if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.CompareTag("one_cell"))
             {
                 anim = hit.collider.gameObject.GetComponent<Animator>();
-                if (anim.enabled == false)
+
+                if (anim != null && !anim.enabled)
                 {
                     anim.enabled = true;
-                    //Остановка пульсирования через Coroutine
                     StartCoroutine(CellScale());
                 }
             }
         }
-        
-        //Видимость панели меню
+
         if (Input.GetKeyDown(KeyCode.Escape))
             menuPanel.SetActive(!menuPanel.activeInHierarchy);
     }
 
+
     IEnumerator CellScale()
     {
-        Animator anim1 = anim;
+        Animator pulse = anim;
         yield return new WaitForSeconds(0.51f);
-        anim1.enabled = false;
+        pulse.enabled = false;
     }
 }

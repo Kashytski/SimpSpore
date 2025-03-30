@@ -7,7 +7,7 @@ public class Cell_Script : MonoBehaviour, IInteractable
 {
     [SerializeField] GameObject circle;
     [SerializeField] Text pointsText;
-    [SerializeField] GameObject center;
+    [SerializeField] Image center;
 
     public int points;
 
@@ -17,95 +17,100 @@ public class Cell_Script : MonoBehaviour, IInteractable
     public bool getPointsOther = false;
     public bool setPointsOther = false;
 
-    void Start()
+    public void OwnStart()
     {
-        //Первичная покраска и получение points
         pointsText.text = $"{points}";
 
         if (points == 0)
         {
             tag = "one_cell";
-            center.GetComponent<Image>().color = Color.grey;
+            center.color = Color.grey;
         }
 
-        if (tag == "other_cell") center.GetComponent<Image>().color = Color.red;
-        if (tag == "cell") center.GetComponent<Image>().color = Color.cyan;
+        switch (tag)
+        {
+            case "other_cell":
+                center.color = Color.red;
+                break;
+
+            case "cell":
+                center.color = Color.cyan;
+                break;
+        }
     }
 
     public void UpdatePoints()
     {
-        //Потеря points соотв клетками, перекраска, если нужно
-        //Для своих клеток
-        if (setPoints == true)
+        if (setPoints)
         {
             points /= 2;
             circle.SetActive(false);
             setPoints = false;
         }
-        else if (getPoints == true)
+        else if (getPoints)
         {
             getPoints = false;
         }
 
-        //Для чужих клеток
-        if (setPointsOther == true)
+        if (setPointsOther)
         {
             points /= 2;
             setPointsOther = false;
         }
-        else if (getPointsOther == true)
+        else if (getPointsOther)
         {
             getPointsOther = false;
         }
 
         if (points == 0)
         {
-            center.GetComponent<Image>().color = Color.grey;
+            center.color = Color.grey;
             tag = "one_cell";
         }
 
         pointsText.text = $"{points}";
     }
 
-    //Смена тэга и перекраска клетки-получателя, если нужно
     public void UpdateTagMy()
     {
         if (tag != "other_cell")
         {
-            center.GetComponent<Image>().color = Color.cyan;
+            center.color = Color.cyan;
             tag = "cell";
+            Cell_Controller.Instance.Replace(this);
         }
         else
         {
             if (points < 0)
             {
-                center.GetComponent<Image>().color = Color.cyan;
+                center.color = Color.cyan;
                 tag = "cell";
+                Cell_Controller.Instance.Replace(this);
                 points = -points;
             }
         }
     }
 
-    //Смена тэга и перекраска клетки-получателя, если нужно
     public void UpdateTagOther()
     {
         if (tag != "cell")
         {
-            center.GetComponent<Image>().color = Color.red;
+            center.color = Color.red;
             tag = "other_cell";
+            Cell_Controller.Instance.Replace(this);
         }
         else
         {
             if (points < 0)
             {
-                center.GetComponent<Image>().color = Color.red;
+                center.color = Color.red;
                 tag = "other_cell";
                 points = -points;
+                Cell_Controller.Instance.Replace(this);
             }
         }
     }
 
-    //Визуальное выделение
     public void PointsTransfer()
     {
         circle.SetActive(true);

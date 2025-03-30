@@ -6,21 +6,20 @@ using UnityEngine.UI;
 public class Cell_Incr : MonoBehaviour
 {
     [SerializeField] Text points;
-    [SerializeField] GameObject center;
-    [SerializeField] GameObject menuPanel;
+    [SerializeField] Image center;
+    private GameObject menuPanel => Cell_Controller.Instance.MenuPanel.gameObject;
 
     public int bound;
     float time = 0;
 
     void Update()
     {
-        if (menuPanel.activeInHierarchy == false)
+        if (!menuPanel.activeInHierarchy)
         {
-            if (center.GetComponent<Image>().color != Color.grey)
+            if (center.color != Color.grey)
             {
-                //Раз в 60 кадров число points в клетке растёт
-                time++;
-                if (time / 60 == 1)
+                time += Time.deltaTime;
+                if (time > 1)
                 {
                     time = 0;
                     points.text = $"{int.Parse(points.text) + 1}";
